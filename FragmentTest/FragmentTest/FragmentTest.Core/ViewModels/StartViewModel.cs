@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -9,16 +10,18 @@ namespace FragmentTest.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
-        public ICommand StartCommand => new MvxCommand(ExecuteStart);
+        public ICommand StartCommand => new MvxAsyncCommand(ExecuteStart);
 
-        public StartViewModel()
+        
+
+        public StartViewModel(IMvxNavigationService navigationService)
         {
-            _navigationService = Mvx.Resolve<IMvxNavigationService>();
+            _navigationService = navigationService;
         }
 
-        private async void ExecuteStart()
+        private async Task ExecuteStart()
         {
-            await _navigationService.Navigate<MainViewModel>();
+            await _navigationService.Navigate<FirstViewModel>();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace FragmentTest2.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<MainViewModel>();
+            RegisterNavigationServiceAppStart<FirstViewModel>();
         }
     }
 }
